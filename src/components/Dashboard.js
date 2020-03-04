@@ -10,18 +10,42 @@ import {
   Card,
   CardActions,
   CardContent,
-  makeStyles
+  makeStyles,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody
 } from "@material-ui/core";
 
 class Dashboard extends Component {
   render() {
     return (
       <div>
-        {this.props.biz.map(biz => (
-          <div>
-            <p>{biz.name}</p>
-          </div>
-        ))}
+        <div>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="left">Description</TableCell>
+                <TableCell align="left">Hours</TableCell>
+                <TableCell align="left">Address</TableCell>
+              </TableRow>
+            </TableHead>
+            {this.props.biz.map(biz => (
+              <TableBody>
+                <TableRow key={biz.id}>
+                  <TableCell align="left">{biz.name}</TableCell>
+                  <TableCell align="left">{biz.description}</TableCell>
+                  <TableCell align="left">{biz.hours}</TableCell>
+                  <TableCell align="left">{biz.address}</TableCell>
+                </TableRow>
+              </TableBody>
+            ))}
+          </Table>
+
+          {/* <p>{biz.name}</p> */}
+        </div>
       </div>
     );
   }
@@ -48,3 +72,5 @@ export default Dashboard;
 //         </TableRow>
 //       ))}
 //     </TableBody>
+
+//REFER TO LAST THREE HOMEWORK ASSIGNMENTS FOR GUIDANCE
