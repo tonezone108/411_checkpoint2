@@ -1,68 +1,68 @@
 import React, { Component } from "react";
-import { Button, TextField } from "@material-ui/core";
-import Dashboard from "./Dashboard";
-class Login extends Component {
+import { Redirect } from "react-router";
+import { TextField, Button, Container } from "@material-ui/core";
+
+class App extends Component {
   state = {
-    user: "",
-    pass: "",
-    loggedIn: false
+    username: "",
+    password: "",
+    redirect: false
   };
 
-  handleChange = e => {
-    const copy = { ...this.state };
-    copy[e.target.id] = e.target.value;
-    this.setState(copy);
+  handleTextChange = e => {
+    const state = { ...this.state };
+    state[e.target.name] = e.target.value;
+    this.setState(state);
   };
 
-  submit = e => {
+  login = e => {
     e.preventDefault();
-    if (this.state.pass == "password") {
-      this.setState({ loggedIn: true });
-    }
-    console.log(this.state);
+    // set cookie here
+    // set loggedIn = true and max-age = 60*1000 (one minute)
+    document.cookie = "loggedIn=true;max-age=60*1000";
+    this.props.loginUser(this.state);
+    // window.location.replace("/"); //////////////////////////
+    this.setState({ redirect: true });
   };
 
   render() {
-    if (this.state.loggedIn) {
-      return <Dashboard />;
-    } else {
-      return (
-        <div style={{ width: "30%", margin: "0 auto" }}>
-          <form
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              aligncontent: "center"
-            }}
-            onSubmit={this.submit}
-          >
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
+    return (
+      <div className="App">
+        <Container maxWidth="sm">
+          <form className="login-form" onSubmit={this.login}>
             <TextField
-              id="user"
-              label="User Name"
-              value={this.state.user}
-              onChange={this.handleChange}
-              style={{ margin: "10px" }}
+              required
+              onChange={this.handleTextChange}
+              value={this.state.username}
+              name="username"
+              label="Username"
+              type="text"
             />
             <TextField
-              id="pass"
+              required
+              onChange={this.handleTextChange}
+              value={this.state.password}
+              name="password"
               label="Password"
               type="password"
-              value={this.state.pass}
-              onChange={this.handleChange}
-              style={{ margin: "10px" }}
-            ></TextField>
+            />
             <Button
-              style={{ background: "green", color: "white", marginTop: "10px" }}
+              type="submit"
+              className="login-button"
               variant="contained"
-              type="Submit"
+              color="primary"
             >
               Login
             </Button>
           </form>
-        </div>
-      );
-    }
+        </Container>
+      </div>
+    );
   }
 }
 
-export default Login;
+export default App;

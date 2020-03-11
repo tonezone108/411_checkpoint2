@@ -1,4 +1,9 @@
 export default {
+  user: {
+    username: false,
+    password: false
+  },
+
   biz: [
     {
       id: 1,

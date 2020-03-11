@@ -17,6 +17,19 @@ import {
   TableCell,
   TableBody
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+// const HandleIcon = props => {
+//   console.log(props);
+//   if (props.user.username) {
+//     <DeleteIcon
+//       // add onClick method here
+//       onClick={() => props.removeCar(idx)}
+//       className="icon text-red"
+//     />;
+//   }
+// };
 
 class Dashboard extends Component {
   render() {
@@ -35,15 +48,20 @@ class Dashboard extends Component {
             {this.props.biz.map(biz => (
               <TableBody>
                 <TableRow key={biz.id}>
-                  <TableCell align="left">{biz.name}</TableCell>
+                  <TableCell align="left">
+                    <Link to={`/biz/${biz.id}`}>{biz.name}</Link>
+                  </TableCell>
                   <TableCell align="left">{biz.description}</TableCell>
                   <TableCell align="left">{biz.hours}</TableCell>
                   <TableCell align="left">{biz.address}</TableCell>
                 </TableRow>
+                {/* <HandleIcon /> */}
               </TableBody>
             ))}
           </Table>
-
+          {/* <a id="login/logout" href="/Login">
+              link text
+            </a> */}
           {/* <p>{biz.name}</p> */}
         </div>
       </div>

@@ -5,6 +5,7 @@ import Router from "./Router";
 import "./App.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import HandleLogin from "./container/HandleLogin";
 
 import { Button, AppBar, Toolbar, TextField } from "@material-ui/core";
 
@@ -13,10 +14,12 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <AppBar style={{ background: "green" }} position="staic">
-            <Toolbar>This is the bar</Toolbar>
-          </AppBar>
           <BrowserRouter>
+            <AppBar style={{ background: "green" }} position="staic">
+              <Toolbar>This is the bar</Toolbar>
+              <HandleLogin />
+            </AppBar>
+
             <Router />
           </BrowserRouter>
         </div>
