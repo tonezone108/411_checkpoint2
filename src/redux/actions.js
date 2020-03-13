@@ -12,4 +12,18 @@ const logoutUser = User => {
   };
 };
 
-export { loginUser, logoutUser };
+const removeBiz = index => {
+  return {
+    type: "REMOVE_BIZ",
+    value: index
+  };
+};
+
+const addBiz = biz => {
+  return {
+    type: "ADD_BIZ",
+    value: biz
+  };
+};
+
+export { loginUser, logoutUser, removeBiz, addBiz };

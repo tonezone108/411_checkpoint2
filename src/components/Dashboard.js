@@ -19,6 +19,7 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import DeleteIcon from "@material-ui/icons/Delete";
+import AddBiz from "../container/AddBiz";
 
 // const HandleIcon = props => {
 //   console.log(props);
@@ -43,9 +44,12 @@ class Dashboard extends Component {
                 <TableCell align="left">Description</TableCell>
                 <TableCell align="left">Hours</TableCell>
                 <TableCell align="left">Address</TableCell>
+                <TableCell align="left">
+                  {this.props.user.username && <AddBiz />}
+                </TableCell>
               </TableRow>
             </TableHead>
-            {this.props.biz.map(biz => (
+            {this.props.biz.map((biz, index) => (
               <TableBody>
                 <TableRow key={biz.id}>
                   <TableCell align="left">
@@ -54,8 +58,16 @@ class Dashboard extends Component {
                   <TableCell align="left">{biz.description}</TableCell>
                   <TableCell align="left">{biz.hours}</TableCell>
                   <TableCell align="left">{biz.address}</TableCell>
+
+                  <TableCell align="left">
+                    {this.props.user.username && (
+                      <button onClick={() => this.props.removeBiz(index)}>
+                        DELETE
+                      </button>
+                    )}
+                  </TableCell>
                 </TableRow>
-                {/* <HandleIcon /> */}
+                {/*  */}
               </TableBody>
             ))}
           </Table>
