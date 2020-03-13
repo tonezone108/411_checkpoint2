@@ -27,7 +27,7 @@ class AddBiz extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const payload = { ...this.state };
-    payload.id = this.props.carTotal + 1;
+    payload.id = this.props.bizTotal + 1;
     delete payload.open;
     console.log("THE BIZ", payload);
     // add this.props.addCar function here

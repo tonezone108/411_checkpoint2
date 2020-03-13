@@ -45,7 +45,9 @@ class Dashboard extends Component {
                 <TableCell align="left">Hours</TableCell>
                 <TableCell align="left">Address</TableCell>
                 <TableCell align="left">
-                  {this.props.user.username && <AddBiz />}
+                  {this.props.user.username && (
+                    <AddBiz bizTotal={this.props.biz.length} />
+                  )}
                 </TableCell>
               </TableRow>
             </TableHead>
