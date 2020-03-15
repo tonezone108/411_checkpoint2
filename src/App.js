@@ -16,11 +16,13 @@ class App extends Component {
         <div className="App">
           <BrowserRouter>
             <AppBar style={{ background: "green" }} position="staic">
-              <Toolbar>This is the bar</Toolbar>
-              <div>
-                <Link to to={`/`}>
-                  Home
-                </Link>
+              <Toolbar>
+                <h1>Small Business App</h1>
+              </Toolbar>
+              <div align="left">
+                <a href="/">
+                  <Button>Home</Button>
+                </a>
                 <HandleLogin />
               </div>
             </AppBar>
